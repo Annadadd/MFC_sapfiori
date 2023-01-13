@@ -1,0 +1,49 @@
+<mvc:View xmlns:cards="sap.f.cards" xmlns:f="sap.f" controllerName="tileproject.tileproject.controller.tile" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:table="sap.ui.table" xmlns:t="sap.m.Table" xmlns:layout="sap.ui.layout" xmlns:tnt="sap.tnt">
+    <Page id="tile" title="{i18n>title}">
+        <!-- flussi in errore --> 
+        <content> 
+        <Toolbar>
+        <Button
+						class="sapUiTinyMarginBottom"
+						icon="sap-icon://add"
+						
+						press="vaiADnD"/>
+         </Toolbar>
+            <Toolbar>
+                <content>
+                <cards:Header title="Flussi in Errore"></cards:Header>
+               
+                </content>
+            </Toolbar>
+            <layout:HorizontalLayout allowWrapping="true" content="{flussiModel>/flussi}">
+                <GenericTile header="{flussiModel>nome}" subheader="" visible="{= ${flussiModel>stato} ? false : true}" class="bgRed sapUiTinyMargin" press="vaiAlDettaglio">
+                    <tileContent>
+                        <TileContent unit="" footer="">
+                            <ImageContent src="{= ${flussiModel>stato} ? 'sap-icon://accept' : 'sap-icon://error'}" />
+                        </TileContent>
+                    </tileContent>
+                </GenericTile>
+            </layout:HorizontalLayout>
+        </content>
+        <!-- flussi ok -->
+        <content>
+         
+        <Toolbar>
+                <content>
+                   <cards:Header title="Flussi OK">
+             </cards:Header>
+                 
+                </content>
+            </Toolbar>
+            <layout:HorizontalLayout allowWrapping="true" content="{flussiModel>/flussi}">
+                <GenericTile header="{flussiModel>nome}" subheader="" visible="{= ${flussiModel>stato} ? true : false}" class="bgGreen sapUiTinyMargin" press="vaiAlDettaglio">
+                    <tileContent>
+                        <TileContent unit="" footer="" class="sapUiTinyMargin">
+                            <ImageContent src="{= ${flussiModel>stato} ? 'sap-icon://accept' : 'sap-icon://error'}" />
+                        </TileContent>
+                    </tileContent>
+                </GenericTile>
+            </layout:HorizontalLayout>
+        </content>
+    </Page>
+</mvc:View>
