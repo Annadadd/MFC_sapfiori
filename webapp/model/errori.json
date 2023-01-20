@@ -23,7 +23,7 @@
             "nome": "errore_2",
             "data": "02/02/2022",
             "messaggio": "Refused to execute script from 'https://port8080-workspaces-ws-rxwp9.us10.trial.applicationstudio.cloud.sap/",
-            "stato":false
+            "stato":true
 
             
         },
@@ -41,7 +41,7 @@
             "nome": "errore_4",
             "data": "11/04/2022",
             "messaggio": "Refused to execute script from 'https://port8080-workspaces-ws-rxwp9.us10.trial.applicationstudio.cloud.sap/Component-preload.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled.",
-            "stato":false
+            "stato":true
 
             
         }

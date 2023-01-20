@@ -1,7 +1,11 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"./Utils"
-], function(Controller, Utils) {
+	"./Utils",
+	"sap/ui/core/Fragment",
+    "sap/m/Button",
+    "sap/m/Dialog",
+    "sap/m/ButtonType"
+], function(Controller, Utils, Fragment) {
 	"use strict";
 
 	return Controller.extend("tileproject.tileproject.controller.Utenti", {
@@ -45,7 +49,30 @@ sap.ui.define([
 
 		onBeforeOpenContextMenu: function(oEvent) {
 			oEvent.getParameter("listItem").setSelected(true);
-		}
+		},
+		aggUtente: function () {
+			var oView = this.getView();
+
+			// create dialog lazily
+			if (!this.byId("AnagUtenti")) {
+				// load asynchronous XML fragment
+				Fragment.load({
+					id: oView.getId(),
+					name: "tileproject.tileproject.view.AnagUtenti",
+					controller: this
+				}).then(function (oDialog) {
+					// connect dialog to the root view of this component (models, lifecycle)
+					oView.addDependent(oDialog);
+					oDialog.open();
+				});
+			} else {
+				this.byId("AnagUtenti").open();
+			}
+			
+		},
+		onCloseDialog: function() {
+			this.byId("AnagUtenti").close();}
+		
 	});
 
 });

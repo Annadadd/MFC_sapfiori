@@ -1,9 +1,25 @@
-<mvc:View xmlns:f="sap.f" controllerName="tileproject.tileproject.controller.DnD" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:table="sap.ui.table" xmlns:t="sap.m.Table" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form">
+<mvc:View xmlns:f="sap.f" controllerName="tileproject.tileproject.controller.DnD" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:table="sap.ui.table" xmlns:t="sap.m.Table" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:tnt="sap.tnt" >
      
-            	<Page id = 'DnD' 
+        <Page id = 'DnD' 
 		showHeader="false"
 		enableScrolling="true"
 		class="sapUiContentPadding">
+		
+		
+		<tnt:ToolHeader class="sapUiMediumMarginBottom">
+        <Avatar src="test-resources/sap/tnt/images/Woman_avatar_01.png" displaySize="XS" />
+        <Text text="Welcome Admin" wrapping="false" />
+        <!-- <Avatar src="test-resources/sap/tnt/images/Woman_avatar_01.png" displaySize="XS" press=".onAvatarPressed" > --> 
+		<Image src="test-resources/sap/tnt/images/SAP_Logo.png" /> 
+		<ToolbarSpacer />
+		<!-- <Button icon="sap-icon://search" type="Transparent" /> -->
+		<Button icon="sap-icon://task" type="Transparent" press="vaiADnD"/>
+		<Button icon="sap-icon://home" type="Transparent" press="vaiHome"/>
+		<Button icon="sap-icon://grid" type="Transparent" />
+	    </tnt:ToolHeader>
+	
+	
+	
 		<content>
 			<HBox renderType="Bare">
 				<mvc:XMLView id="Utenti" viewName="tileproject.tileproject.view.Utenti" async="true"/>

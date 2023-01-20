@@ -3,26 +3,42 @@
         {
             "id": "0",
             "nome": "Mario",
-            "cognome": "Rossi"
+            "cognome": "Rossi",
+            "email":"cheneso@email.com",
+            "ruolo":"admin",
+            "telefono":3206367123
         },
         {
             "id": "1",
             "nome": "Diana",
-            "cognome": "Sanna"
-        },  {
+            "cognome": "Sanna",
+            "email":"cheneso@email.com",
+            "ruolo":"admin",
+            "telefono":3206367123
+        },  
+        {
             "id": "2",
             "nome": "Flavia",
-            "cognome": "Cidonio"
+            "cognome": "Cidonio",
+            "email":"cheneso@email.com",
+            "ruolo":"admin",
+            "telefono":3206367123
         },
         {
             "id": "3",
             "nome": "Angelo",
-            "cognome": "Sisinna"
+            "cognome": "Sisinna",
+            "email":"cheneso@email.com",
+            "ruolo":"admin",
+            "telefono":3206367123
         },
         {
             "id": "4",
             "nome": "Chiara",
-            "cognome": "Fedele"
+            "cognome": "Fedele",
+            "email":"cheneso@email.com",
+            "ruolo":"admin",
+            "telefono":3206367123
         }
     ]
 }

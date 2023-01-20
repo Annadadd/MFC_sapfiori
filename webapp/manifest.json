@@ -36,6 +36,10 @@
       "ErroriModel": {
         "uri": "model/errori.json",
         "type": "JSON"
+      },
+      "associazioniModel": {
+        "uri": "model/associazioni.json",
+        "type": "JSON"
       }
     }
   },
@@ -97,6 +101,10 @@
       "ErroriModel":{
         "type": "sap.ui.model.json.JSONModel",
         "dataSource": "ErroriModel"
+      },
+      "associazioniModel":{
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "associazioniModel"
       }
     },
     "resources": {
@@ -139,6 +147,13 @@
           ]
         },
         {
+          "name": "RouteUtentiSelezionati",
+          "pattern": "UtentiSelezionati/{selectedobj}",
+          "target": [
+            "TargetUtentiSelezionati"
+          ]
+        },
+        {
           "name": "RouteUtenti",
           "pattern": "Utenti",
           "target": [
@@ -146,10 +161,38 @@
           ]
         },
         {
-          "name": "RouteFlussi",
-          "pattern": "Flussi",
+          "name": "RouteAnagUtenti",
+          "pattern": "AnagUtenti",
           "target": [
-            "TargetFlussi"
+            "TargetAnagUtenti"
+          ]
+        },
+        {
+          "name": "RouteAnagFlussi",
+          "pattern": "AnagFlussi",
+          "target": [
+            "TargetAnagFlussi"
+          ]
+        },
+        {
+          "name": "RouteAddFlusso",
+          "pattern": "AddFlusso",
+          "target": [
+            "TargetAddFlusso"
+          ]
+        },
+        {
+          "name": "RouteAddUtente",
+          "pattern": "AddUtente",
+          "target": [
+            "TargetAddUtente"
+          ]
+        },
+        {
+          "name": "RouteTabellaGestione",
+          "pattern": "TabellaGestione",
+          "target": [
+            "TargetTabellaGestione"
           ]
         }
       ],
@@ -175,6 +218,13 @@
           "viewId": "DnD",
           "viewName": "DnD"
         },
+        "TargetUtentiSelezionati": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "UtentiSelezionati",
+          "viewName": "UtentiSelezionati"
+        },
         "TargetUtenti": {
           "viewType": "XML",
           "transition": "slide",
@@ -182,14 +232,43 @@
           "viewId": "Utenti",
           "viewName": "Utenti"
         },
-        "TargetFlussi": {
+        "TargetAnagUtenti": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "Flussi",
-          "viewName": "Flussi"
+          "viewId": "AnagUtenti",
+          "viewName": "AnagUtenti"
+        },
+        "TargetAnagFlussi": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "AnagFlussi",
+          "viewName": "AnagFlussi"
+        },
+        "TargetAddFlusso": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "AddFlusso",
+          "viewName": "AddFlusso"
+        },
+        "TargetAddUtente": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "AddUtente",
+          "viewName": "AddUtente"
+        },
+        "TargetTabellaGestione": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "TabellaGestione",
+          "viewName": "TabellaGestione"
         }
-
+        
+       
       }
     },
     "rootView": {

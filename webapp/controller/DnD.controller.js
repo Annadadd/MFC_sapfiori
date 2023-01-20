@@ -3,7 +3,7 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"./Utils",
 	"sap/ui/thirdparty/jquery"
-], function(Controller, JSONModel, Utils, jQuery) {
+], function (Controller, JSONModel, Utils, jQuery) {
 	"use strict";
 
 	return Controller.extend("tileproject.tileproject.controller.DnD", {
@@ -13,38 +13,65 @@ sap.ui.define([
 			this.oProductsModel = this.initSampleProductsModel();
 			this.getView().setModel(this.oProductsModel);
 			console.log("entrata in OnInt");
+			this.oFlussiModel = this.initFlussiModel();
+			this.getView().setModel(this.oFlussiModel, "flussi");
 		},
 
-		onExit: function() {
+		onExit: function () {
 			this.oProductsModel.destroy();
-			
+
 		},
 
-		 initSampleProductsModel: function() {
+		initSampleProductsModel: function () {
 			var oModel = new JSONModel();
 
-		 	jQuery.ajax({
-		 		url: sap.ui.require.toUrl("tileproject/tileproject/model/Utenti.json"),
-		 		dataType: "json"}).then(function(oData) {
-		 		// prepare and initialize the rank property
-		oData.utenti.forEach(function(oProduct) {
-			oProduct.Rank = Utils.ranking.Initial;
-			}, this);
+			jQuery.ajax({
+				url: sap.ui.require.toUrl("tileproject/tileproject/model/Utenti.json"),
+				dataType: "json"
+			}).then(function (oData) {
+				// prepare and initialize the rank property
+				oData.utenti.forEach(function (oProduct) {
+					oProduct.Rank = Utils.ranking.Initial;
+				}, this);
 
-				oModel.setData(oData); 
+				oModel.setData(oData);
 			});
 
 			return oModel;
 		},
-		
+		initFlussiModel: function () {
+			var oModel = new JSONModel();
 
-		moveToAvailableProductsTable: function() {
+			jQuery.ajax({
+				url: sap.ui.require.toUrl("tileproject/tileproject/model/flussi.json"),
+				dataType: "json"
+			}).then(function (oData) {
+				// prepare and initialize the rank property
+				// oData.utenti.forEach(function(oProduct) {
+				// 	oProduct.Rank = Utils.ranking.Initial;
+				// 	}, this);
+
+				oModel.setData(oData);
+			});
+
+			return oModel;
+		},
+
+
+		moveToAvailableProductsTable: function () {
 			this.byId("UtentiSelezionati").getController().moveToAvailableProductsTable();
 		},
 
-		moveToSelectedProductsTable: function() {
+		moveToSelectedProductsTable: function () {
 			this.byId("Utenti").getController().moveToSelectedProductsTable();
-		}
+		},
+
+		vaiHome: function () {
+			window.history.go(-1)
+		},
+
+		
+
 	});
 
 });

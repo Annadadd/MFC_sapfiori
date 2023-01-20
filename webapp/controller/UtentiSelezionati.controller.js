@@ -1,11 +1,22 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/m/ColumnListItem",
-	"./Utils"
-], function(Controller, ColumnListItem, Utils) {
+	"./Utils",
+	"sap/ui/core/Fragment",
+    "sap/m/Button",
+    "sap/m/Dialog",
+    "sap/m/ButtonType",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator",
+	"sap/m/MessageToast"
+], function(Controller, ColumnListItem, Utils, Fragment, Filter, FilterOperator, MessageToast) {
 	"use strict";
 
 	return Controller.extend("tileproject.tileproject.controller.UtentiSelezionati", {
+
+		onInit: function () {
+			console.log("sono dentro l'oninit");
+		},
 
 		moveToAvailableProductsTable: function() {
 			var oSelectedProductsTable = this.getView().byId("table");
@@ -96,7 +107,112 @@ sap.ui.define([
 
 		onBeforeOpenContextMenu: function(oEvent) {
 			oEvent.getParameters().listItem.setSelected(true);
-		}
+		},
+
+		aggFlusso: function () {
+			var oView = this.getView();
+
+			// create dialog lazily
+			if (!this.byId("AnagFlussi")) {
+				// load asynchronous XML fragment
+				Fragment.load({
+					id: oView.getId(),
+					name: "tileproject.tileproject.view.AnagFlussi",
+					controller: this
+				}).then(function (oDialog) {
+					// connect dialog to the root view of this component (models, lifecycle)
+					oView.addDependent(oDialog);
+					oDialog.open();
+				});
+			} else {
+				this.byId("AnagFlussi").open();
+			}
+			
+		},
+		onCloseDialog: function() {
+			this.byId("AnagFlussi").close();},
+		
+		
+
+			//zona menù flussi 
+
+		aggDialog: function () {
+			var oView = this.getView();
+
+			// create dialog lazily
+			if (!this.byId("mySelectDialog")) {
+				// load asynchronous XML fragment
+				Fragment.load({
+					id: oView.getId(),
+					name: "tileproject.tileproject.view.Dialog",
+					controller: this
+				}).then(function (oDialog) {
+					// connect dialog to the root view of this component (models, lifecycle)
+					oView.addDependent(oDialog);
+					oDialog.open();
+				});
+			} else {
+				this.byId("mySelectDialog").open();
+			}
+			
+		},
+		onCloseDialogFlussi: function() {
+			this.byId("mySelectDialog").close();},
+		
+		// onSearchFlussi: function (oEvent) {
+		// 	var sValue = oEvent.getParameter("value");
+		// 	var oFilter = new Filter("nome", FilterOperator.Contains, sValue);
+		// 	var oBinding = oEvent.getParameter("value");
+		// 	oBinding.filter([oFilter]);
+		// },
+		
+		// apriQualcosa: function (oEvent){
+		// 	var smart = new sap.ui.comp.smarttable.SmartTable("mainsmarttable", settingsTable);
+		// 	smart._oTable.insertColumn(new sap.ui.table.Column({ resizable: true, autoResizable: true, label: new sap.m.Label({ text: "Vtext", design: "Bold" }), template: new SmartField({ value: { path: "Vtext" }, editable: false }) }));
+		// }
+		// onSelectionChange: function (oEvent) {
+		// 	var oList = oEvent.getSource(),
+		// 		bSelected = oEvent.getParameter("selected");
+
+		// 	  // skip navigation when deselecting an item in multi selection mode
+		// 		if (!(oList.getMode() === "MultiSelect" && !bSelected)) {
+		// 		   // get the list item, either from the listItem parameter or from the event's source itself (will depend on the device-dependent mode).
+		// 		this.showFlussi(oEvent.getParameter("listItem") || oEvent.getSource());
+
+
+
+		// 		}
+		// 	},
+
+
+
+		showFlussi: function (oEvent) {
+			//var SelectedItem = oEvent.getParameter("selectedItem");
+			// var id = oItem.getBindingContext("flussi").getProperty("id"); //prendo l'elemento da selezionare tramite id nella master page
+			//  console.log(id);
+			//  this.getView().byId("table").bindElement({ path: "/flussi/" + id });//lo sparo dritto nella detail page
+			
+				var oSelectedItem = oEvent.getSource();
+				var oContext = oSelectedItem.getBindingContext("flussi");
+				var sPath = oContext.getPath();
+				var oProductDetailPanel = this.byId("table");
+				oProductDetailPanel.bindElement({ path: sPath, model: "flussi" });
+			},
+
+			
+
+
+		  
+
+		//   onItemSelected: function(oEvent) {
+		// 	var oItem, oCtx;
+		// 	oItem = oEvent.getSource();
+		// 	oCtx = oItem.getBindingContext();
+		// 	alert(oCtx); // is undefined
+		//   }
+
 	});
+
+	
 
 });

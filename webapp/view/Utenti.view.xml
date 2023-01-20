@@ -1,4 +1,4 @@
-<mvc:View 
+<mvc:View
 	controllerName="tileproject.tileproject.controller.Utenti"
 	xmlns:dnd="sap.ui.core.dnd"
 	xmlns:mvc="sap.ui.core.mvc"
@@ -21,7 +21,13 @@
 		<headerToolbar>
 			<OverflowToolbar>
 				<Title text="Utenti" id ="Utenti"/>
+				<Button
+						class="sapUiTinyMarginBottom"
+						icon="sap-icon://add"
+						
+						press="aggUtente"/>
 			</OverflowToolbar>
+			
 		</headerToolbar>
 		<columns>
 			<Column>
