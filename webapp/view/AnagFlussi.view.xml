@@ -69,14 +69,13 @@
                                     <Label text="modulo" />
                                     <Input id="modulo" value="{flussiModel>modulo}" editable="false" />
                                     <Label text="utenti" />
-                                   
+
                                     <!-- <List items="{path: 'flussiModel>utenti'}">
                                      <InputListItem >
                                     <StandardListItem title="{flussiModel>cognome}{flussiModel>nome}" />
                                     </InputListItem>
                                         
                                     </List> -->
-                                    
                                 </f:content>
                             </f:SimpleForm>
                         </IconTabFilter>
@@ -90,48 +89,15 @@
                                             <Title text="{flussiModel>nome}" level="H2" />
                                             <ToolbarSpacer />
                                             <SearchField id="searchFieldUtentiAssociati" width="auto" placeholder="searchfield" search=".onSearchUtentiAssociati" />
-                                            <Button text="agg utente a flusso" press="aggiungiUtenteAFlusso" />
+                                            <!-- <Button text="agg utente a flusso" press="aggiungiUtenteAFlusso" /> -->
                                         </content>
                                     </OverflowToolbar>
                                 </headerToolbar>
 
                                 <columns>
-                                    <Column width="30%">
-                                        <Text text="Cognome" />
-                                    </Column>
-
                                     <Column minScreenWidth="Desktop" demandPopin="true">
-                                        <Text text="Nome" />
+                                        <Text text="id" />
                                     </Column>
-                                    <Column width="auto" hAlign="End">
-                                        <Text text="" />
-                                    </Column>
-                                </columns>
-                                <items>
-                                    <ColumnListItem vAlign="Middle" press="onPress" >
-                                        <cells>
-                                            <Text text="{flussiModel>cognome}" />
-                                            <Text text="{flussiModel>nome}" />
-                                            <Button icon="sap-icon://delete" press="eliminaUtenteDaFlusso" id="eliminaUtenteDaFlussoBtn" enabled="false" />
-                                        </cells>
-                                    </ColumnListItem>
-                                </items>
-                            </Table>
-
-                            <!-- IPOTETICA TABELLA UTENTI -->
-
-                            <!-- <Table id="tableUtenti" inset="false" items="{UtentiModel>/utenti}" alternateRowColors="false" visible="false" class="sapUiSmallMarginTop">
-                                <headerToolbar>
-                                    <OverflowToolbar>
-                                        <content>
-                                            <Title text="Utenti" level="H2" />
-                                            <ToolbarSpacer />
-                                            <SearchField id="searchFieldUtenti" width="auto" placeholder="searchfield" search=".onSearchUtentiAssociati" />
-                                        </content>
-                                    </OverflowToolbar>
-                                </headerToolbar>
-
-                                <columns>
                                     <Column width="30%">
                                         <Text text="Cognome" />
                                     </Column>
@@ -146,22 +112,68 @@
                                 <items>
                                     <ColumnListItem vAlign="Middle" press="onPress">
                                         <cells>
-                                            <Text text="{UtentiModel>cognome}" />
-                                            <Text text="{UtentiModel>nome}" />
-                                            
+                                            <Text text="{flussiModel>id}" id="IDutentiAssociati"/>
+                                            <Text text="{flussiModel>cognome}" />
+                                            <Text text="{flussiModel>nome}" />
+                                            <Button icon="sap-icon://delete" press="eliminaUtenteDaFlusso" id="eliminaUtenteDaFlussoBtn" enabled="false" />
                                         </cells>
                                     </ColumnListItem>
                                 </items>
-                            </Table> -->
+                            </Table>
+
+                            <!-- IPOTETICA TABELLA UTENTI -->
+
+                            <Table id="tableUtenti" inset="false" items="{UtentiModel>/utenti}" alternateRowColors="false" visible="true" class="sapUiSmallMarginTop">
+                                <headerToolbar>
+                                    <OverflowToolbar visible="false">
+                                        <content>
+                                            <Title text="Utenti" level="H2" />
+                                            <ToolbarSpacer />
+                                            <SearchField id="searchFieldUtenti" width="auto" placeholder="searchfield" search=".onSearchUtenti" />
+                                        </content>
+                                    </OverflowToolbar>
+                                </headerToolbar>
+
+                                <columns>
+                                <Column minScreenWidth="Desktop" demandPopin="true">
+                                        <!-- <Text text="id" /> -->
+                                    </Column>
+                                    <Column width="30%">
+                                        <!-- <Text text="Cognome" /> -->
+                                    </Column>
+
+                                    <Column minScreenWidth="Desktop" demandPopin="true">
+                                        <!-- <Text text="Nome" /> -->
+                                    </Column>
+                                    <Column width="auto" hAlign="End">
+                                        <!-- <Text text="" /> -->
+                                    </Column>
+                                    
+                                    
+                                </columns>
+                                <items>
+                                    <ColumnListItem vAlign="Middle" press="onPress">
+                                        <cells>
+                                        <Text text="{UtentiModel>id}" id="IDutenti"/>
+                                            <Text text="{UtentiModel>cognome}" />
+                                            <Text text="{UtentiModel>nome}" />
+                                             <Button icon="sap-icon://add" press="aggiungiUtenteDaFlusso" id="aggiungiUtenteDaFlussoBtn" enabled="false" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
                         </IconTabFilter>
                     </items>
                 </IconTabBar>
 
                 <semantic:customFooterContent>
                     <OverflowToolbarButton icon="sap-icon://save" id="saveBtn" press="save" visible="false" />
+
                     <OverflowToolbarButton icon="sap-icon://refresh" id="refreshBtn" press="refresh" visible="false" />
+
                     <OverflowToolbarButton icon="sap-icon://edit" id="editBtn" press="edit" visible="true" />
-                    <OverflowToolbarButton icon="sap-icon://add" id="addBtn1" press="add" />
+
+                    <!-- <OverflowToolbarButton icon="sap-icon://add" id="addBtn1" press="add" /> -->
                 </semantic:customFooterContent>
             </semantic:DetailPage>
         </detailPages>
