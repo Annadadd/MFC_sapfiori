@@ -17,12 +17,12 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/Northwind/Northwind.svc/",
+        "uri": "/catalog/",
         "type": "OData",
         "settings": {
           "annotations": [],
           "localUri": "localService/metadata.xml",
-          "odataVersion": "2.0"
+          "odataVersion": "4.0"
         }
       },
       "flussiModel": {
@@ -41,6 +41,7 @@
         "uri": "model/associazioni.json",
         "type": "JSON"
       }
+
     }
   },
   "sap.ui": {
@@ -88,7 +89,12 @@
       "": {
         "dataSource": "mainService",
         "preload": true,
-        "settings": {}
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
       },
       "flussiModel":{
         "type": "sap.ui.model.json.JSONModel",

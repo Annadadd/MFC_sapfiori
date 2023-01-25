@@ -1,117 +1,113 @@
 <mvc:View height="100%" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="tileproject.tileproject.controller.AnagUtenti" xmlns:semantic="sap.m.semantic" displayBlock="true" xmlns:f="sap.ui.layout.form">
-    <!-- <tnt:ToolHeader>
-            <Avatar src="test-resources/sap/tnt/images/Woman_avatar_01.png" displaySize="XS" />
-            <Text text="Welcome Admin" wrapping="false" />
-            <Image src="test-resources/sap/tnt/images/SAP_Logo.png" />
-            <ToolbarSpacer />
-            <Button icon="sap-icon://home" type="Transparent" press="vaiHome" />
-        </tnt:ToolHeader> -->
-    <!-- Header Content -->
+    
+    <App>
+        <Page>
+            <headerContent >
+                <ToolbarSpacer/>
+                 <Button icon="sap-icon://nav-back" type="Transparent" press="goBack"/>
+                <Button icon="sap-icon://home" type="Transparent" press="vaiHome"/>
+            </headerContent>
 
-    <!-- <semantic:headerContent>
-			<layout:HorizontalLayout allowWrapping="true">
-				<layout:VerticalLayout class="sapUiMediumMarginEnd">
-					<ObjectAttribute title="Functional Area" text="{/objectDescription/category}"/>
-					<ObjectAttribute title="Cost Center" text="{/objectDescription/center}"/>
-					<ObjectAttribute title="Email" text="{/objectDescription/email}"/>
-				</layout:VerticalLayout>
+            <SplitContainer>
+                <masterPages>
+                    <semantic:MasterPage title="Utenti">
+                        <!-- <List id="list" items="{path:'/Anagrafica_Utenti'}"> -->
+                        <List id="list" items="{
+                    path: '/Anagrafica_Utenti',
+                    sorter: {
+                        path: 'ID_UTENTE',
+                        descending: true
+                    }
+                }" growing="true" growingScrollToLoad="true">
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <content>
+                                        <ToolbarSpacer />
+                                        <SearchField id="searchField" width="auto" placeholder="searchfield" search=".onSearch" />
+                                        <Button id="sortUsersButton" icon="sap-icon://sort" tooltip="{i18n>sortButtonText}" press="applySortGroup" />
+                                    </content>
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <items>
+                                <ObjectListItem id="ObjectListItem" type="Navigation" press="onSelectionChange" title="{COGNOME_UTENTE}" intro="{NOME_UTENTE}" />
+                            </items>
+                        </List>
 
-				<layout:VerticalLayout>
-					<ObjectAttribute title="Availability"/>
+                        <semantic:landmarkInfo>
+                            <PageAccessibleLandmarkInfo rootLabel="Root label" headerLabel="Header label" footerLabel="Footer label" />
+                        </semantic:landmarkInfo>
+                        <semantic:sort>
+                            <semantic:SortSelect change="onSemanticSelectChange" items="{path: '/Anagrafica_Utenti'}">
+                                <core:Item key="{NOME_UTENTE}" text="{COGNOME_UTENTE}" />
+                            </semantic:SortSelect>
+                        </semantic:sort>
 
-					<ObjectStatus text="In Stock" state="{/objectDescription/status}" />
-				</layout:VerticalLayout>
-			</layout:HorizontalLayout>
-		</semantic:headerContent> -->
+                        <semantic:filter>
+                            <semantic:FilterAction press="onSemanticButtonPress" />
+                        </semantic:filter>
+                        <semantic:group>
+                            <semantic:GroupAction press="onSemanticButtonPress" />
+                        </semantic:group>
+                    </semantic:MasterPage>
+                </masterPages>
 
-    <SplitContainer>
-        <masterPages>
-            <semantic:MasterPage title="Utenti">
-                <List id="list" items="{UtentiModel>/utenti}">
-                    <headerToolbar>
-                        <OverflowToolbar>
-                            <content>
-                                <ToolbarSpacer />
-                                <SearchField id="searchField" width="auto" placeholder="searchfield" search=".onSearch" />
-                                <Button id="sortUsersButton" icon="sap-icon://sort" tooltip="{i18n>sortButtonText}" press="onSort" />
-                            </content>
-                        </OverflowToolbar>
-                    </headerToolbar>
-                    <items>
-                        <ObjectListItem id="ObjectListItem" type="Navigation" press="onSelectionChange" title="{UtentiModel>cognome}" intro="{UtentiModel>nome}" />
-                    </items>
-                </List>
+                <detailPages>
+                    <semantic:DetailPage title="Dettaglio Utente" id="detail">
+                        <f:SimpleForm
+                            id="SimpleFormDisplay354wide"
+                            editable="false"
+                            layout="ResponsiveGridLayout"
+                            title=""
+                            labelSpanXL="4"
+                            labelSpanL="3"
+                            labelSpanM="4"
+                            labelSpanS="12"
+                            adjustLabelSpan="false"
+                            emptySpanXL="0"
+                            emptySpanL="4"
+                            emptySpanM="0"
+                            emptySpanS="0"
+                            columnsXL="2"
+                            columnsL="1"
+                            columnsM="1"
+                            singleContainerFullSize="false"
+                        >
+                            <f:content>
+                                <Label text="id" />
+                                <Input id="id" value="{ID_UTENTE}" editable="false" />
 
-                <semantic:landmarkInfo>
-                    <PageAccessibleLandmarkInfo rootLabel="Root label" headerLabel="Header label" footerLabel="Footer label" />
-                </semantic:landmarkInfo>
-                <!-- <semantic:sort>
-                    <semantic:SortSelect change="onSemanticSelectChange" items="">
-                        <core:Item key="{type}" text="{type}" />
-                    </semantic:SortSelect>
-                </semantic:sort> -->
+                                <Label text="cognome" />
+                                <Input id="cognome" value="{COGNOME_UTENTE}" editable="false" />
 
-                <semantic:filter>
-                    <semantic:FilterAction press="onSemanticButtonPress" />
-                </semantic:filter>
-                <semantic:group>
-                    <semantic:GroupAction press="onSemanticButtonPress" />
-                </semantic:group>
+                                <Label text="nome" />
+                                <Input id="nome" value="{NOME_UTENTE}" editable="false" />
 
-            </semantic:MasterPage>
-        </masterPages>
+                                <Label text="ruolo" />
+                                <!-- <Input id="ruolo" value="{ID_RUOLO}" editable="false" /> -->
+                                <Select id="ruolo" forceSelection="true" editable="false">
+                                    <core:Item key="{ID_RUOLO}" text="{ID_RUOLO}" />
+                                    <core:Item key="Admin" text="Admin" />
+                                    <core:Item key="Technical" text="Technical" />
+                                    <core:Item key="Consumer" text="Consumer" />
+                                </Select>
 
-        <detailPages>    
-            <semantic:DetailPage title="Dettaglio Utente" id="detail">
-                <f:SimpleForm
-                    id="SimpleFormDisplay354wide"
-                    editable="false"
-                    layout="ResponsiveGridLayout"
-                    title=""
-                    labelSpanXL="4"
-                    labelSpanL="3"
-                    labelSpanM="4"
-                    labelSpanS="12"
-                    adjustLabelSpan="false"
-                    emptySpanXL="0"
-                    emptySpanL="4"
-                    emptySpanM="0"
-                    emptySpanS="0"
-                    columnsXL="2"
-                    columnsL="1"
-                    columnsM="1"
-                    singleContainerFullSize="false"
-                >
-                    <f:content>
-                        <Label text="id" />
-                        <Input id="id" value="{UtentiModel>id}" editable="false" />
+                                <Label text="email" />
+                                <Input id="email" value="{EMAIL_UTENTE}" editable="false" />
 
-                        <Label text="cognome" />
-                        <Input id="cognome" value="{UtentiModel>cognome}" editable="false" />
+                                <Label text="telefono" />
+                                <Input id="telefono" value="{TELEFONO_UTENTE}" editable="false" />
+                            </f:content>
+                        </f:SimpleForm>
 
-                        <Label text="nome" />
-                        <Input id="nome" value="{UtentiModel>nome}" editable="false" />
-
-                        <Label text="ruolo" />
-                        <Input id="ruolo" value="{UtentiModel>ruolo}" editable="false" />
-
-                        <Label text="email" />
-                        <Input id="email" value="{UtentiModel>email}" editable="false" />
-
-                        <Label text="telefono" />
-                        <Input id="telefono" value="{UtentiModel>telefono}" editable="false" />
-                    </f:content>
-                </f:SimpleForm>
-
-                <semantic:customFooterContent>
-                    <OverflowToolbarButton icon="sap-icon://save" id="saveBtn" press="save" visible="false" />
-                    <OverflowToolbarButton icon="sap-icon://refresh" id="refreshBtn" press="refresh" visible="false" />
-                    <OverflowToolbarButton icon="sap-icon://edit" id="editBtn" press="edit" visible="true" />
-                    <OverflowToolbarButton icon="sap-icon://add" id="addBtn" press="add" />
-                </semantic:customFooterContent>
-
-            </semantic:DetailPage>
-           
-        </detailPages>
-    </SplitContainer>
+                        <semantic:customFooterContent>
+                            <OverflowToolbarButton icon="sap-icon://save" id="saveBtn" press="save" visible="false" />
+                            <OverflowToolbarButton icon="sap-icon://refresh" id="refreshBtn" press="refresh" visible="false" />
+                            <OverflowToolbarButton icon="sap-icon://edit" id="editBtn" press="edit" visible="true" />
+                            <OverflowToolbarButton icon="sap-icon://add" id="addBtn" press="add" />
+                        </semantic:customFooterContent>
+                    </semantic:DetailPage>
+                </detailPages>
+            </SplitContainer>
+        </Page>
+    </App>
 </mvc:View>

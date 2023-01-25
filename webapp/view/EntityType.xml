@@ -1,0 +1,8 @@
+<EntityType name="Product" sap:label="Product">
+    <Key>
+        <PropertyRef name="ProductId"/>
+    </Key>
+    <Property name="ProductId" type="Edm.Int32" nullable="false" sap:label="Product ID" sap:creatable="true" sap:updatable="true"/>
+    <Property name="Name" type="Edm.String" maxLength="50" sap:label="Name" sap:creatable="true" sap:updatable="true"/>
+    <Property name="Description" type="Edm.String" maxLength="500" sap:label="Description" sap:creatable="true" sap:updatable="true"/>
+</EntityType>

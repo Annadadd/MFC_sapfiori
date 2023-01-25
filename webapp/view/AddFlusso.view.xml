@@ -1,12 +1,11 @@
 <mvc:View height="100%" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="tileproject.tileproject.controller.AddFlusso" xmlns:semantic="sap.m.semantic" displayBlock="true" xmlns:f="sap.ui.layout.form" xmlns:tnt="sap.tnt">
-   
-        <!-- <tnt:ToolHeader>
-            <Avatar src="test-resources/sap/tnt/images/Woman_avatar_01.png" displaySize="XS" />
-            <Text text="Welcome Admin" wrapping="false" />
-            <Image src="test-resources/sap/tnt/images/SAP_Logo.png" />
-            <ToolbarSpacer />
-            <Button icon="sap-icon://home" type="Transparent" press="vaiHome" />
-        </tnt:ToolHeader> -->
+    <App>
+        <Page>
+            <headerContent>
+                <ToolbarSpacer />
+                <Button icon="sap-icon://nav-back" type="Transparent" press="goBack" />
+                <Button icon="sap-icon://home" type="Transparent" press="vaiHome" />
+            </headerContent>
 
             <semantic:DetailPage title="Nuovo Flusso" id="detail">
                 <f:SimpleForm
@@ -30,7 +29,7 @@
                 >
                     <f:content>
                         <Label text="id" />
-                        <Input id="id" editable="false"/>
+                        <Input id="id" editable="false" />
 
                         <Label text="nome" />
                         <Input id="nome" />
@@ -40,19 +39,15 @@
 
                         <Label text="modulo" />
                         <Input id="modulo" />
-
                     </f:content>
                 </f:SimpleForm>
 
-				<semantic:customFooterContent>
-               
-                <OverflowToolbarButton icon="sap-icon://refresh" id="refreshBtn" press="refresh" />
-                <OverflowToolbarButton icon="sap-icon://save" id="exitBtn"  press="exit" />
-                <OverflowToolbarButton icon="sap-icon://add" id="addBtn" press="add"/>
-
-				</semantic:customFooterContent>
-
-				
+                <semantic:customFooterContent>
+                    <OverflowToolbarButton icon="sap-icon://refresh" id="refreshBtn" press="refresh" />
+                    <OverflowToolbarButton icon="sap-icon://save" id="exitBtn" press="exit" />
+                    <OverflowToolbarButton icon="sap-icon://add" id="addBtn" press="add" />
+                </semantic:customFooterContent>
             </semantic:DetailPage>
-       
+        </Page>
+    </App>
 </mvc:View>

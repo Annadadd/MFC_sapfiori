@@ -48,6 +48,15 @@ sap.ui.define([
             return UIComponent.getRouterFor(this);
 
         },
+
+        vaiHome: function(){
+            this.getRouter().navTo("Routetile");
+        },
+
+        goBack: function(){
+            window.history.go(-1);
+        },
+
         add: function() {
             var msg = 'Flusso salvato correttamente';
 			MessageToast.show(msg);

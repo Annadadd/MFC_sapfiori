@@ -9,6 +9,7 @@ sap.ui.define([
     var URLHelper = mobileLibrary.URLHelper;
 
     return Controller.extend("testtemplate.testtemplate.controller.BaseController", {
+        
         /**
          * Convenience method for accessing the router.
          * @public
@@ -38,6 +39,7 @@ sap.ui.define([
         setModel : function (oModel, sName) {
             return this.getView().setModel(oModel, sName);
         },
+        
 
         /**
          * Getter for the resource bundle.

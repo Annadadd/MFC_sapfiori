@@ -3,13 +3,13 @@ sap.ui.define([
     'sap/m/MessageToast',
     "sap/ui/core/UIComponent",
     "sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator",
-	"sap/ui/model/FilterType"
+    "sap/ui/model/FilterOperator",
+    "sap/ui/model/FilterType"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, MessageToast,UIComponent,Filter,FilterOperator,FilterType) {
+    function (Controller, MessageToast, UIComponent, Filter, FilterOperator, FilterType) {
         "use strict";
 
         return Controller.extend("tileproject.tileproject.controller.tile", {
@@ -21,7 +21,7 @@ sap.ui.define([
             },
 
 
-           
+
 
 
             getRouter: function () {
@@ -34,8 +34,13 @@ sap.ui.define([
             },
 
             vaiHome: function () {
-                window.history.go(-1)
+                this.getRouter().navTo("Routetile");
             },
+
+            goBack: function () {
+                window.history.go(-1);
+            },
+
             onSearch: function (oEvt) {
                 var sQuery = oEvt.getParameter("query"),
                     aFilter = [new Filter("id", FilterOperator.Contains, sQuery),
@@ -43,7 +48,7 @@ sap.ui.define([
                     new Filter("modulo", FilterOperator.Contains, sQuery),
                     new Filter("cognome", FilterOperator.Contains, sQuery),
                     new Filter("flusso", FilterOperator.Contains, sQuery),
-                ],
+                    ],
                     oTable = this.byId("tableUtentiFlussi"),
                     oBinding = oTable.getBinding("items"),
                     oFilter = null;
@@ -56,7 +61,7 @@ sap.ui.define([
                 oBinding.filter(oFilter);
             },
             vaiAlDettaglio: function (oEvent) {
-                
+
                 var oSource = oEvent.getSource(),
                     oContext = oSource.getBindingContext("flussiModel"),
                     yes = oContext.getPath(),
@@ -66,7 +71,7 @@ sap.ui.define([
                 });
             },
 
-            vaiHome: function(){
+            vaiHome: function () {
                 this.getRouter().navTo("Routetile");
             }
 
